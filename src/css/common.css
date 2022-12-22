@@ -11,8 +11,33 @@ body {
   color: #212121;
   line-height: 1.5;
 }
-
+a {
+  color: inherit;
+}
 img {
   display: block;
   max-width: 100%;
+}
+.container {
+ width: 150px;
+ text-align: center;
+ margin-left: auto;
+ margin-right: auto;
+}
+.startBtn {
+  cursor: pointer;
+  padding: 5px 10px;
+  border-radius: 5px;
+  font-size: 20px;
+  background-color: green;
+  color: white;
+}
+.stopBtn {
+  cursor: pointer;
+  padding: 5px 10px;
+  border-radius: 5px;
+  border-color: transparent;
+  font-size: 20px;
+  background-color: red;
+
 }

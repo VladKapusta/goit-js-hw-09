@@ -1,4 +1,5 @@
 // Описаний в документації
+import Notiflix from 'notiflix';
 import flatpickr from 'flatpickr';
 // Додатковий імпорт стилів
 import 'flatpickr/dist/flatpickr.min.css';
@@ -6,6 +7,7 @@ import 'flatpickr/dist/flatpickr.min.css';
 const refs = {
   input: document.querySelector('#datetime-picker'),
   startBtn: document.querySelector('[data-start]'),
+  timer: document.querySelector('.timer'),
   days: document.querySelector('[data-days]'),
   hours: document.querySelector('[data-hours]'),
   minutes: document.querySelector('[data-minutes]'),
@@ -22,15 +24,14 @@ const options = {
   isActive: false,
 
   onClose(selectedDates) {
-    if(options.isActive) {
-      return
+    if (options.isActive) {
+      return;
     }
     if (selectedDates[0].getTime() - Date.now() > 0) {
       refs.startBtn.disabled = false;
       refs.startBtn.addEventListener('click', onStartTimer);
       function onStartTimer() {
         options.isActive = true;
-        
         const timerId = setInterval(() => {
           const currentTime = Date.now();
           const timer = selectedDates[0].getTime() - currentTime;
@@ -42,11 +43,15 @@ const options = {
       }
     } else {
       refs.startBtn.disabled = true;
-      alert('Please choose a date in the future');
+
+      Notiflix.Report.warning(
+        'Error',
+        'Please choose a date in the future',
+        'OK'
+      );
     }
   },
 };
-
 
 function updateInterface({ days, hours, minutes, seconds }) {
   refs.days.textContent = days;

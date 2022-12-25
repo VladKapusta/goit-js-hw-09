@@ -28,7 +28,8 @@ function onSubmitFormCreatePromises(e) {
         Notiflix.Notify.failure(
           `❌ Rejected promise ${position} in ${delay}ms`
         );
-      });
+      })
+      .finally(refs.form.reset());
     promiseDelay += step;
   }
 }
